@@ -1,3 +1,4 @@
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
@@ -22,15 +23,19 @@ public class Patient {
         setCity(city);
         setProvince(province);
         setBirthday(birthday);
-        //int id DBUtility.insertRecord();
-        //setID(id);
+        try {
+            int id = DBUtility.insertNewPatient(this);
+            setID(id);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
-    public int getId() {
+    public int getID() {
         return id;
     }
 
-    private void setId(int id) {
+    private void setID(int id) {
         if(id > 0)
             this.id = id;
         else
