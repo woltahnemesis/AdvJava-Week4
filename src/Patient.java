@@ -31,6 +31,18 @@ public class Patient {
         }
     }
 
+    // Constructor for fetching values from the database
+    public Patient(int id, String firstName, String lastName, String phoneNum, String streetAddress, String city, String province, LocalDate birthday) {
+        setID(id);
+        setFirstName(firstName);
+        setLastName(lastName);
+        setPhoneNum(phoneNum);
+        setStreetAddress(streetAddress);
+        setCity(city);
+        setProvince(province);
+        setBirthday(birthday);
+    }
+
     public int getID() {
         return id;
     }
@@ -131,5 +143,10 @@ public class Patient {
     public int getAge()
     {
         return Period.between(LocalDate.now(), birthday).getYears();
+    }
+
+    // toString get automatically called when constructor is called
+    public String toString(){
+        return String.format("%d %s %s", id, firstName, lastName);
     }
 }
